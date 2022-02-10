@@ -150,10 +150,11 @@ export default {
       this.refresher.complete();
     },
     async fetchVideos() {
-      this.videos = await casteaching.videos()
+      this.videos = await casteaching().videos()
     }
   }
 }
 </script>
+
 <style scoped>
 </style>
