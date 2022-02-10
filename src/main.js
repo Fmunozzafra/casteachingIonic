@@ -1,6 +1,8 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router';
+import mitt from 'mitt';
+const emitter = mitt();
 
 import { IonicVue } from '@ionic/vue';
 
@@ -31,6 +33,7 @@ const app = createApp(App)
 
 
 router.isReady().then(() => {
+  app.config.globalProperties.emitter = emitter;
   app.config.globalProperties.casteaching = casteaching({baseUrl:'https://casteaching.alumnedam.me/api'});
   app.mount('#app');
 });
