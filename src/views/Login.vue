@@ -56,7 +56,6 @@ import {
 } from "@ionic/vue";
 import { Device } from '@capacitor/device';
 import store from "../store";
-import casteaching from '@acacha/casteaching'
 
 export default {
   name: 'login',
@@ -94,11 +93,10 @@ export default {
       // POST -> URL https://casteaching.alumnedam.me/api/sanctum/token
       let token = null
       const device_name = (info && info.name) || 'TokenCasteachingIonic'
-      const api = casteaching({baseUrl:'https://casteaching.ferranmunozzafra.me/api'})
 
       try {
         token = await this.casteaching.login(this.email,this.password,device_name)
-        api.setToken(token)
+        this.casteaching.setToken(token)
       } catch (error) {
         console.log(error);
       }
@@ -118,7 +116,7 @@ export default {
       let path = '/user'
       // route parameters wantedRoute
       if(this.$route.params && this.$route.params.wantedRoute) path = this.$route.params.wantedRoute
-      this.$router.push({ path })
+      await this.$router.push({ path })
     }
   }
 }
